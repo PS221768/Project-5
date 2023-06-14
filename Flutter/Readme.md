@@ -1,1 +1,1 @@
-In here there will be a phone app made with flutter
+This directory contains the source for the phone app made with Flutter.
