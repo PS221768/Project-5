@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->text("description");
+            $table->text("description_en");
+            $table->text("description_nl");
             $table->timestamps();
         });
     }

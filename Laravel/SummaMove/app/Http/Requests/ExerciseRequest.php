@@ -23,7 +23,8 @@ class ExerciseRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description_en' => 'required|max:255',
+            'description_nl' => 'required|max:255',
         ];
     }
 }
