@@ -1,0 +1,29 @@
+{
+    "home": "Home",
+    "exercises": "Oefeningen",
+    "achievements": "Prestaties",
+    "account": "Account",
+    "about": "Over",
+    "settings": "Instellingen",
+
+    "homeHeader": "Welkom bij SummaMove!",
+    "aboutBody": "Binnen deze app kunt u verschillende oefeningen vinden om uit te voeren, met de mogelijkheid om jouw voortgang bij te houden. (dummy text)",
+
+    "addAchievement": "Prestatie toevoegen",
+
+    "emailHint": "E-mail",
+    "emailValidationFailed": "Vul een geldig e-mail adres in.",
+    "passwordHint": "Wachtwoord",
+    "passwordValidationFailed": "Het wachtwoord moet langer dan 6 tekens zijn.",
+    "loginFormAuthenticationFailed": "Het gegeven e-mail of wachtwoord is onjuist.",
+    "loginFormSubmission": "Inloggen",
+
+    "theme": "Thema",
+    "language": "Taal",
+
+    "themeSystem": "Systeem",
+    "themeLight": "Licht",
+    "themeDark": "Donker",
+
+    "applicationName": "Over SummaMove"
+}
