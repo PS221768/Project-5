@@ -1,0 +1,29 @@
+{
+    "home": "Home",
+    "exercises": "Exercises",
+    "achievements": "Achievement",
+    "account": "Account",
+    "about": "About",
+    "settings": "Settings",
+
+    "homeHeader": "Welcome to SummaMove!",
+    "aboutBody": "Within this app you'll be able to find various exercises to do, while also being able to track your performance. (dummy text)",
+
+    "addAchievement": "Add achievement",
+
+    "emailHint": "E-mail",
+    "emailValidationFailed": "Please fill in a valid e-mail address.",
+    "passwordHint": "Password",
+    "passwordValidationFailed": "The password length must be more than 6 characters.",
+    "loginFormAuthenticationFailed": "The provided e-mail or password is incorrect.",
+    "loginFormSubmission": "Login",
+
+    "theme": "Theme",
+    "language": "Language",
+
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+
+    "applicationName": "About SummaMove"
+}
