@@ -20,7 +20,7 @@ class AchievementControllerTest extends TestCase
 
         $user = User::factory()->create();
         $this->user_id = $user->id;
-        $this->actingAs($user); // Authenticate the user for the tests
+        $this->actingAs($user);
     }
 
     /** @test */
