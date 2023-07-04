@@ -23,8 +23,8 @@ class ExerciseFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'description' => $this->faker->paragraph,
-            // Add other fields as per your Exercise model definition
+            'description_nl' => $this->faker->paragraph,
+            'description_en' => $this->faker->paragraph,
         ];
     }
 }

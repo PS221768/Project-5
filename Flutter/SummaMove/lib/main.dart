@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-  import 'package:flutter_localizations/flutter_localizations.dart';
-  import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
-
-import 'package:summamove/classes/SettingsHandler.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'dart:ui' as ui;
 
 import 'package:summamove/pages/home.dart';
 import 'package:summamove/pages/Exercises/exercisesPage.dart';
@@ -12,11 +10,16 @@ import 'package:summamove/pages/Account/accountPage.dart';
 import 'package:summamove/pages/about.dart';
 import 'package:summamove/pages/settings.dart';
 
+import 'models/User.dart';
+
 class Destination {
   Destination(this.label, this.icon);
   String label;
   final Widget icon;
 }
+
+User? currentUser;
+String? currentToken;
 
 // Init
 void main() {
@@ -33,14 +36,11 @@ void main() {
         Locale('en'), // English
         Locale('nl'), // Dutch
       ],
-      locale: SettingsHandler().getLanguage(),
+      locale: ui.window.locale,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      themeMode: SettingsHandler().getThemeMode(),
-      home: ChangeNotifierProvider(
-        create: (context) => SettingsHandler(),
-        child: const App(),
-      ),
+      themeMode: ThemeMode.system,
+      home: const App(),
     ),
   );
 }
@@ -64,14 +64,25 @@ class _AppState extends State<App> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     List<Destination> destinations = <Destination>[
-      Destination(AppLocalizations.of(context).home, const Icon(Icons.home)),
-      Destination(AppLocalizations.of(context).exercises, const Icon(Icons.fitness_center)),
-      Destination(AppLocalizations.of(context).achievements, const Icon(Icons.emoji_events)),
-      Destination(AppLocalizations.of(context).account, const Icon(Icons.account_circle_outlined)),
-      Destination(AppLocalizations.of(context).about, const Icon(Icons.text_snippet_outlined)),
-      Destination(AppLocalizations.of(context).settings, const Icon(Icons.settings)),
+      Destination(AppLocalizations.of(context).home,
+          const Icon(Icons.home)),
+      Destination(AppLocalizations.of(context).exercises,
+          const Icon(Icons.fitness_center)),
+      Destination(AppLocalizations.of(context).achievements,
+          const Icon(Icons.emoji_events)),
+      Destination(AppLocalizations.of(context).account,
+          const Icon(Icons.account_circle_outlined)),
+      Destination(AppLocalizations.of(context).about,
+          const Icon(Icons.text_snippet_outlined)),
+      Destination(AppLocalizations.of(context).settings,
+          const Icon(Icons.settings)),
     ];
 
     List<Widget> pages = <Widget>[
@@ -99,7 +110,7 @@ class _AppState extends State<App> {
               ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
         ),
         iconTheme:
-            IconThemeData(color: Theme.of(context).colorScheme.inversePrimary),
+        IconThemeData(color: Theme.of(context).colorScheme.inversePrimary),
       ),
       drawer: NavigationDrawer(
         onDestinationSelected: handleScreenChanged,
@@ -113,7 +124,7 @@ class _AppState extends State<App> {
             ),
           ),
           ...destinations.map(
-            (Destination destination) {
+                (Destination destination) {
               return NavigationDrawerDestination(
                 label: Text(destination.label,
                     style: Theme.of(context).textTheme.bodyMedium),

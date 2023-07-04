@@ -3,14 +3,16 @@ namespace App\Http\Controllers;
 
 use App\Traits\HttpResponses;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Exercise;
 use App\Http\Requests\ExerciseRequest;
+use Illuminate\Validation\ValidationException;
 
 class ExerciseController extends Controller
 {
-    // traits
+    // Traits
     use HttpResponses;
 
     public function index()
@@ -25,6 +27,7 @@ class ExerciseController extends Controller
         }
         catch (\Exception $e)
         {
+            Log::error($e->getMessage(), ['exception' => $e]);
             return $this->error('', 'Failed to retrieve exercises.', 500);
         }
     }
@@ -41,29 +44,16 @@ class ExerciseController extends Controller
         }
         catch (\Exception $e)
         {
+            Log::error($e->getMessage(), ['exception' => $e]);
             return $this->error('', 'Failed to create exercise.', 500);
         }
     }
 
-    public function show(Exercise $exercise)
+    public function update(ExerciseRequest $request, string $id)
     {
         try
         {
-            return $this->success([
-                'exercise' => $exercise
-            ]);
-        }
-        catch (\Exception $e)
-        {
-            return $this->error('', 'Failed to retrieve exercise.', 500);
-        }
-    }
-
-    public function update(ExerciseRequest $request, Exercise $exercise)
-    {
-        try
-        {
-            $exercise->update($request->validated());
+            $exercise = Exercise::findOrFail($id)->update($request->validated());
             
             return $this->success([
                 'exercise' => $exercise
@@ -71,18 +61,21 @@ class ExerciseController extends Controller
         }
         catch (\Exception $e)
         {
+            Log::error($e->getMessage(), ['exception' => $e]);
             return $this->error('', 'Failed to update exercise.', 500);
         }
     }
 
-    public function destroy(Exercise $exercise)
+    public function destroy(string $id)
     {
         try
         {
-            $exercise->delete();
-            return $this->success('', 'Exercise deleted successfully.', 204);
+            Exercise::findOrFail($id)->delete();
+            return $this->success('', 'Exercise deleted successfully.', 200);
         }
-        catch (\Exception $e) {
+        catch (\Exception $e) 
+        {
+            Log::error($e->getMessage(), ['exception' => $e]);
             return $this->error('', 'Failed to delete exercise.', 500);
         }
     }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:summamove/classes/SettingsHandler.dart';
-import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key, required this.title});
@@ -22,9 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               Text(AppLocalizations.of(context).language),
               const LanguageDropdown(),
-
               const Divider(),
-
               Text(AppLocalizations.of(context).theme),
               const ThemeDropdown(),
             ],
@@ -43,8 +40,15 @@ class LanguageDropdown extends StatefulWidget {
 }
 
 class _LanguageDropdownState extends State<LanguageDropdown> {
-  static List<String> languages = <String>['System', 'NL', 'EN'];
-  String dropdownValue = languages.first;
+  static List<String> languagesStr = <String>[
+  "System", "NL", "EN"
+  ];
+
+  static List<Locale> languages = <Locale>[
+    Locale(Intl.systemLocale), const Locale('NL'), const Locale('EN'),
+  ];
+
+  String dropdownValue = languagesStr.first;
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +62,10 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
       onChanged: (String? value) {
         setState(() {
           dropdownValue = value!;
+          //  languages[languagesStr.indexOf(value)];
         });
       },
-      items: languages.map<DropdownMenuItem<String>>((String value) {
+      items: languagesStr.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),
@@ -81,9 +86,11 @@ class _ThemeDropdownState extends State<ThemeDropdown> {
   static List<String> themeModesStr = <String>[
     "System", "Light", "Dark"
   ];
+
   static List<ThemeMode> themeModes = <ThemeMode>[
     ThemeMode.system, ThemeMode.light, ThemeMode.dark
   ];
+
   String dropdownValue = themeModesStr.first;
 
   @override
@@ -98,7 +105,7 @@ class _ThemeDropdownState extends State<ThemeDropdown> {
       onChanged: (String? value) {
         setState(() {
           dropdownValue = value!;
-          SettingsHandler().setThemeMode(themeModes[themeModesStr.indexOf(value)]);
+          // themeModes[themeModesStr.indexOf(value)];
         });
       },
       items: themeModesStr.map<DropdownMenuItem<String>>((String value) {

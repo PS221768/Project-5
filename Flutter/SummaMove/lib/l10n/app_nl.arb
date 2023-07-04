@@ -5,18 +5,36 @@
     "account": "Account",
     "about": "Over",
     "settings": "Instellingen",
+    "register": "Registreren",
+    "login": "Inloggen",
 
     "homeHeader": "Welkom bij SummaMove!",
-    "aboutBody": "Binnen deze app kunt u verschillende oefeningen vinden om uit te voeren, met de mogelijkheid om jouw voortgang bij te houden. (dummy text)",
+    "aboutBody": "Welkom bij SummaMove, een app gemaakt door het SummaMove team. Binnen de app kun je verschillende oefeningen vinden om te beoefenen. Je kunt ook prestaties toevoegen om bij te houden hoe bij deze oefeningen hebt gepresteerd, zodat je altijd een geschiedenis van jouw oefeningen bij kunt houden.",
 
     "addAchievement": "Prestatie toevoegen",
+    "removeAchievement": "Prestatie verwijderen",
+    "editAchievement": "Prestatie bijwerken",
 
+    "notLoggedIn": "Log in om prestaties te zien.",
+    "noAchievements": "Geen prestaties gevonden.",
+    "achievementAmount": "Aantal keer beoefend:",
+    "achievementStart": "Start tijd:",
+    "achievementFinish": "Finish tijd:",
+
+    "nameValidationFailed": "Vul een naam in.",
     "emailHint": "E-mail",
     "emailValidationFailed": "Vul een geldig e-mail adres in.",
     "passwordHint": "Wachtwoord",
     "passwordValidationFailed": "Het wachtwoord moet langer dan 6 tekens zijn.",
     "loginFormAuthenticationFailed": "Het gegeven e-mail of wachtwoord is onjuist.",
     "loginFormSubmission": "Inloggen",
+
+    "loginFailed": "Login mislukt. Wachtwoord of email is verkeerd.",
+
+    "welcome": "Welkom,",
+    "creationDate": "Account gemaakt op:",
+    "logout": "Uitloggen",
+    "logoutSuccess": "U bent uitgelogd.",
 
     "theme": "Thema",
     "language": "Taal",

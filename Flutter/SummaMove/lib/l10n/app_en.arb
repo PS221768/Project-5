@@ -1,22 +1,40 @@
 {
     "home": "Home",
     "exercises": "Exercises",
-    "achievements": "Achievement",
+    "achievements": "Achievements",
     "account": "Account",
     "about": "About",
     "settings": "Settings",
+    "register": "Register",
+    "login": "Login",
 
     "homeHeader": "Welcome to SummaMove!",
-    "aboutBody": "Within this app you'll be able to find various exercises to do, while also being able to track your performance. (dummy text)",
+    "aboutBody": "Welcome to SummaMove, an app developed by the SummaMove team. This app is an exercise companion that allows you to find various exercises for you to perform. You can also add achievements to track your performance on these exercises, so that you can view your exercise progress whenever you want.",
 
     "addAchievement": "Add achievement",
+    "removeAchievement": "Remove achievement",
+    "editAchievement": "Edit achievement",
 
+    "notLoggedIn": "Log in to view achievements.",
+    "noAchievements": "No achievements found.",
+    "achievementAmount": "Times performed:",
+    "achievementStart": "Starting time:",
+    "achievementFinish": "Finish time:",
+
+    "nameValidationFailed": "Please enter a name.",
     "emailHint": "E-mail",
-    "emailValidationFailed": "Please fill in a valid e-mail address.",
+    "emailValidationFailed": "Please enter a valid e-mail address.",
     "passwordHint": "Password",
     "passwordValidationFailed": "The password length must be more than 6 characters.",
     "loginFormAuthenticationFailed": "The provided e-mail or password is incorrect.",
     "loginFormSubmission": "Login",
+
+    "loginFailed": "Login failed. Password or email is incorrect.",
+
+    "welcome": "Welcome,",
+    "creationDate": "Account made on:",
+    "logout": "Logout",
+    "logoutSuccess": "You've been logged out.",
 
     "theme": "Theme",
     "language": "Language",

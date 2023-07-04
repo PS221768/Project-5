@@ -15,6 +15,17 @@ class _ExercisePageState extends State<ExercisePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            widget.title,
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: Theme.of(context).colorScheme.inversePrimary),
+          ),
+          leading: InkWell(
+            onTap: () => Navigator.pop(context, false),
+            child: const Icon(Icons.arrow_back),
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(10),
           child:
@@ -33,19 +44,6 @@ class _ExercisePageState extends State<ExercisePage> {
               ),
             )
           ]),
-        ),
-        appBar: AppBar(
-          title: Text(
-            widget.title,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
-          ),
-          leading: InkWell(
-            onTap: () => Navigator.pop(context, false),
-            child: const Icon(Icons.arrow_back),
-          ),
         ),
       ),
     );

@@ -21,7 +21,7 @@ class ExerciseControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_all_exercises()
+    public function app_can_get_all_exercises()
     {
         Exercise::factory()->count(5)->create();
 
@@ -36,7 +36,7 @@ class ExerciseControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_an_exercise()
+    public function app_can_create_an_exercise()
     {
         $exerciseData = Exercise::factory()->raw();
 
@@ -53,27 +53,12 @@ class ExerciseControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_show_an_exercise()
-    {
-        $exercise = Exercise::factory()->create();
-
-        $response = $this->getJson('/api/exercise/' . $exercise->id);
-
-        $response->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [
-                    'exercise',
-                ],
-            ]);
-    }
-
-    /** @test */
-    public function it_can_update_an_exercise()
+    public function app_can_update_an_exercise()
     {
         $exercise = Exercise::factory()->create();
         $updatedData = Exercise::factory()->raw();
 
-        $response = $this->putJson('/api/exercise/' . $exercise->id, $updatedData);
+        $response = $this->patchJson('/api/exercise/' . $exercise->id, $updatedData);
 
         $response->assertStatus(200)
             ->assertJson([
@@ -86,13 +71,13 @@ class ExerciseControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_delete_an_exercise()
+    public function app_can_delete_an_exercise()
     {
         $exercise = Exercise::factory()->create();
 
         $response = $this->deleteJson('/api/exercise/' . $exercise->id);
 
-        $response->assertStatus(204);
+        $response->assertStatus(200);
         $this->assertDatabaseMissing('exercises', ['id' => $exercise->id]);
     }
 }
