@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 
 class Authenticate extends Middleware
@@ -12,6 +13,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
+        if (!$request->expectsJson()) {
+            throw new AuthenticationException('Unauthenticated.');
+        }
         // since we do not have a login page I changed this to /
         return $request->expectsJson() ? null : route('/');
     }

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->integer("amount");
+            $table->time("start")->nullable();
+            $table->time("finish")->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('exercise_id')->references('id')->on('exercises');
-            $table->timestamp("startime");
-            $table->timestamp("endtime");
             $table->timestamps();
         });
     }

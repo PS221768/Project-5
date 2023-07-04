@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Exercise extends Model
 {
     use HasFactory;
-    protected $fillable = ["id", "name", "description"];
+    protected $fillable = ["name", "description_nl", "description_en"];
+
+    public function achievements()
+    {
+        return $this -> hasMany(Achievement::class);
+    }
 }
