@@ -9,7 +9,7 @@ import "package:summamove/models/User.dart";
 import "../main.dart";
 
 class ApiHandler {
-  static String hostUrl = "http://127.0.0.1:8000/api";
+  static String hostUrl = "http://81.16.177.207:8000/api";
   static String loginEndpoint = "/login";
   static String registerEndpoint = "/register";
   static String logoutEndpoint = "/logout";
@@ -168,6 +168,32 @@ class ApiHandler {
         },
       );
       if (response.statusCode == 200) {
+        return 'success';
+      } else {
+        log('${StackTrace.current} ${response.statusCode}');
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
+  Future<String?> createAchievement(String name, int amount, int? user_Id, int exercise_Id) async {
+    try {
+      var url = Uri.parse('$hostUrl$achievementEndpoint');
+      var response = await http.post(
+        url,
+        headers: {
+          'Authorization': 'Bearer $currentToken',
+        },
+        body: {
+          'name': name,
+          'amount': amount.toString(),
+          'user_id': user_Id.toString(),
+          'exercise_id': exercise_Id.toString(),
+        },
+      );
+      if (response.statusCode == 201) {
         return 'success';
       } else {
         log('${StackTrace.current} ${response.statusCode}');
