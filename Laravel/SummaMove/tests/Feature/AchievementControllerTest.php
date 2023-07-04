@@ -61,7 +61,7 @@ class AchievementControllerTest extends TestCase
         $achievement = Achievement::factory()->user($this->user_id)->create();
         $updatedData = Achievement::factory()->user($this->user_id)->raw();
 
-        $response = $this->putJson('/api/achievement/' . $achievement->id, $updatedData);
+        $response = $this->patchJson('/api/achievement/' . $achievement->id, $updatedData);
 
         $response->assertStatus(200)
             ->assertJson([

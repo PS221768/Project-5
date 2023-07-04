@@ -58,7 +58,7 @@ class ExerciseControllerTest extends TestCase
         $exercise = Exercise::factory()->create();
         $updatedData = Exercise::factory()->raw();
 
-        $response = $this->putJson('/api/exercise/' . $exercise->id, $updatedData);
+        $response = $this->patchJson('/api/exercise/' . $exercise->id, $updatedData);
 
         $response->assertStatus(200)
             ->assertJson([
