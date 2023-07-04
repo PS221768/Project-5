@@ -22,12 +22,12 @@ class AchievementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:191',
-            'amount' => 'required|integer',
-            'start' => 'required|date_format:H:i',
-            'finish' => 'required|date_format:H:i',
-            'user_id' => 'required|integer',
-            'exercise_id' => 'required|integer',
+            'name' => 'sometimes|required|string|max:191',
+            'amount' => 'sometimes|required|integer',
+            'start' => 'sometimes|required|date_format:H:i',
+            'finish' => 'sometimes|required|date_format:H:i',
+            'user_id' => 'sometimes|required|integer',
+            'exercise_id' => 'sometimes|required|integer',
         ];
     }
 }

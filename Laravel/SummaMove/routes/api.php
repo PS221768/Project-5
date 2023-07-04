@@ -25,13 +25,13 @@ Route::group(['middleware' => ['auth:sanctum', 'api']], function () {
     ]);
 
     Route::post('/exercise', [ExerciseController::class, 'store']);
-    Route::put('/exercise/{id}', [ExerciseController::class, 'update']);
+    Route::patch('/exercise/{id}', [ExerciseController::class, 'update']);
     Route::delete('/exercise/delete/{id}', [ExerciseController::class, 'destroy']);
 
     Route::get('/achievement', [AchievementController::class, 'index']);
     Route::get('/achievement/user/{user_id}', [AchievementController::class, 'indexByUserId']);
     Route::post('/achievement', [AchievementController::class, 'store']);
-    Route::put('/achievement/{id}', [AchievementController::class, 'update']);
+    Route::patch('/achievement/{id}', [AchievementController::class, 'update']);
     Route::delete('/achievement/{id}', [AchievementController::class, 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);

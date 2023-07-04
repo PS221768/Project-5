@@ -37,9 +37,9 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof AuthenticationException) {
-            return $this->error($exception->errors(), 'You are not authenticated for this request.', 401);
+            return $this->error($exception, 'You are not authenticated for this request.', 401);
         } elseif ($exception instanceof ValidationException) {
-            return $this->error($exception->errors(), 'JSON validation for request failed.', 422);
+            return $this->error($exception, 'JSON validation for request failed.', 422);
         }
 
         return parent::render($request, $exception);
