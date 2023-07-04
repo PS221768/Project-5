@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../classes/ApiHandler.dart';
 import '../../models/Exercise.dart';
 import '../../pages/Exercises/exercisePage.dart';
@@ -37,11 +38,16 @@ class _ExercisesPageState extends State<ExercisesPage> {
               itemCount: exercises?.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  /* onTap:
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SecondRoute()),
-                    ), */
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      final languageCode = Intl.systemLocale.split('_')[0];
+                      final description = 'description_$languageCode'; // stupid & lazy solution
+                      return ExercisePage(
+                          title: exercises![index].name, content: exercises![index][description]
+                      );
+                    }),
+                  ),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -53,6 +59,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15))),
                       child: Container(
+                        constraints: const BoxConstraints(maxHeight: 50, maxWidth: 200),
                         height: 50,
                         decoration: BoxDecoration(
                           border: Border(

@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../classes/ApiHandler.dart';
+import '../../models/User.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.title});
   final String title;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            widget.title,
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: Theme.of(context).colorScheme.inversePrimary),
+          ),
+          leading: InkWell(
+            onTap: () => Navigator.pop(context, false),
+            child: const Icon(Icons.arrow_back),
+          ),
+        ),
         body: Center(
           child: Form(
             key: _formKey,
@@ -23,6 +40,19 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context).passwordHint,
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return AppLocalizations.of(context).nameValidationFailed;
+                    }
+                      return null;
+                    },
+                ),
+                TextFormField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context).emailHint,
                   ),
@@ -40,22 +70,12 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 TextFormField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context).passwordHint,
                   ),
                   validator: (String? value) {
-                    if (value == null || value.isEmpty || !RegExp(r"/^.{6,}$/").hasMatch(value)) {
-                      return AppLocalizations.of(context).passwordValidationFailed;
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: AppLocalizations.of(context).passwordHint,
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty || !RegExp(r"/^.{6,}$/").hasMatch(value)) {
+                    if (value == null || value.isEmpty || value.length < 6) {
                       return AppLocalizations.of(context).passwordValidationFailed;
                     }
                     return null;
@@ -64,8 +84,23 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        String name = nameController.text;
+                        String email = emailController.text;
+                        String password = passwordController.text;
+                        User? user = await ApiHandler().register(name, email, password);
+
+                        if (!context.mounted) return;
+                        if (user != null) {
+                          Navigator.pushReplacementNamed(context, '/home');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(AppLocalizations.of(context).loginFailed),
+                            ),
+                          );
+                        }
                       }
                     },
                     child: const Text('Submit'),
