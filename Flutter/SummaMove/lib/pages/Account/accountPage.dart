@@ -45,9 +45,6 @@ class AccountWidget extends StatelessWidget {
           const Divider(),
           Text("Email: ${currentUser?.email}",
               style: Theme.of(context).textTheme.titleSmall),
-          Text(
-              "${AppLocalizations.of(context).creationDate} ${currentUser?.createdAt}",
-              style: Theme.of(context).textTheme.titleSmall),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: OutlinedButton(

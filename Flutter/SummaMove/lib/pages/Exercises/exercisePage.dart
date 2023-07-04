@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../pages/Achievements/createAchievementPage.dart';
 
 class ExercisePage extends StatefulWidget {
-  const ExercisePage({super.key, required this.title, required this.content});
+  const ExercisePage({super.key, required this.title, required this.content, required this.id});
   final String title;
   final String content;
+  final int id;
 
   @override
   State<ExercisePage> createState() => _ExercisePageState();
@@ -18,8 +20,10 @@ class _ExercisePageState extends State<ExercisePage> {
         appBar: AppBar(
           title: Text(
             widget.title,
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: Theme.of(context).colorScheme.inversePrimary),
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge
+                ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
           ),
           leading: InkWell(
             onTap: () => Navigator.pop(context, false),
@@ -39,7 +43,15 @@ class _ExercisePageState extends State<ExercisePage> {
               child: OutlinedButton(
                 style:
                     OutlinedButton.styleFrom(minimumSize: const Size(200, 50)),
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return CreateAchievementPage(
+                      title: 'Create Achievement',
+                      id: widget.id,
+                    );
+                  }),
+                ),
                 child: Text(AppLocalizations.of(context).addAchievement),
               ),
             )

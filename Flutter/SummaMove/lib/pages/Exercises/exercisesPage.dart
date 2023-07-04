@@ -44,7 +44,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                       final languageCode = Intl.systemLocale.split('_')[0];
                       final description = 'description_$languageCode'; // stupid & lazy solution
                       return ExercisePage(
-                          title: exercises![index].name, content: exercises![index][description]
+                          title: exercises![index].name, content: exercises![index][description], id: exercises![index].id
                       );
                     }),
                   ),
